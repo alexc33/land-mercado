@@ -21,7 +21,7 @@ export default function Hero() {
           </h1>
           <p className="text-xl text-gray-600 mb-8">
             Discover premium land opportunities across the United States. 
-            From hunting land to investment properties, we have what you're looking for.
+            From hunting land to investment properties, we have what you&apos;re looking for.
           </p>
           
           {/* Search Bar */}
