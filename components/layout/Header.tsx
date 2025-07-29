@@ -29,6 +29,9 @@ export default function Header() {
             <Link href="/login" className="text-gray-700 hover:text-green-600 transition-colors">
               Login
             </Link>
+            <Link href="/admin" className="text-gray-700 hover:text-green-600 transition-colors font-semibold">
+              Admin
+            </Link>
           </nav>
 
           {/* Phone Number */}
@@ -68,6 +71,9 @@ export default function Header() {
               </Link>
               <Link href="/login" className="text-gray-700 hover:text-green-600 transition-colors">
                 Login
+              </Link>
+              <Link href="/admin" className="text-gray-700 hover:text-green-600 transition-colors font-semibold">
+                Admin
               </Link>
               <div className="text-sm text-gray-600 pt-2">
                 <span className="font-semibold">Call us:</span> (555) 123-4567
