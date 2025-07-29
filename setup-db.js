@@ -1,4 +1,18 @@
-// This is your Prisma schema file,
+const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+console.log('🚀 Setting up LandMercado Database...\n');
+
+// For now, let's create a local SQLite database for development
+// This will work immediately without external setup
+
+const sqliteUrl = 'file:./dev.db';
+
+console.log('📊 Creating local SQLite database for development...');
+
+// Update the schema to use SQLite for development
+const schemaContent = `// This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
@@ -171,4 +185,39 @@ model Payment {
   user     User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@map("payments")
-}
+}`;
+
+// Write the updated schema
+fs.writeFileSync(path.join(__dirname, 'prisma', 'schema.prisma'), schemaContent);
+
+console.log('✅ Updated Prisma schema for SQLite');
+
+// Update .env.local with SQLite URL
+const envContent = `DATABASE_URL="file:./dev.db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key-here"
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="your-google-maps-api-key"
+CHECKOUT_SECRET_KEY="sk_sbox_your-checkout-secret-key"
+NEXT_PUBLIC_CHECKOUT_PUBLIC_KEY="pk_sbox_your-checkout-public-key"
+CHECKOUT_WEBHOOK_SECRET="your-webhook-secret"`;
+
+fs.writeFileSync(path.join(__dirname, '.env.local'), envContent);
+
+console.log('✅ Updated environment variables');
+
+// Run Prisma commands
+try {
+  console.log('📊 Pushing database schema...');
+  execSync('npx prisma db push', { stdio: 'inherit' });
+  
+  console.log('🔧 Generating Prisma client...');
+  execSync('npx prisma generate', { stdio: 'inherit' });
+  
+  console.log('\n🎉 Database setup complete!');
+  console.log('📁 Database file: dev.db');
+  console.log('🚀 You can now run: npm run dev');
+  
+} catch (error) {
+  console.error('❌ Error setting up database:', error.message);
+  process.exit(1);
+} 
