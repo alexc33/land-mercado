@@ -74,7 +74,7 @@ const mockProperties = [
 ];
 
 export default function PropertiesPage() {
-  const [properties, setProperties] = useState(mockProperties);
+  const [properties] = useState(mockProperties);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
 
