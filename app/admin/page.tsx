@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface DashboardStats {
@@ -24,10 +26,20 @@ export default function AdminDashboard() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
+    if (status === 'loading') return;
+    
+    if (!session || session.user.role !== 'ADMIN') {
+      router.push('/auth/signin');
+      return;
+    }
+    
     fetchDashboardStats();
-  }, []);
+  }, [session, status, router]);
 
   const fetchDashboardStats = async () => {
     try {
@@ -45,7 +57,11 @@ export default function AdminDashboard() {
     }
   };
 
-  if (loading) {
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: '/' });
+  };
+
+  if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -58,6 +74,10 @@ export default function AdminDashboard() {
         </div>
       </div>
     );
+  }
+
+  if (!session || session.user.role !== 'ADMIN') {
+    return null; // Will redirect via useEffect
   }
 
   if (error) {
@@ -99,8 +119,13 @@ export default function AdminDashboard() {
               <p className="text-gray-600">Manage your land investment platform</p>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-500">Welcome, Admin</span>
-              <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+              <span className="text-sm text-gray-500">
+                Welcome, {session.user.name || session.user.email}
+              </span>
+              <button 
+                onClick={handleLogout}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+              >
                 Logout
               </button>
             </div>
