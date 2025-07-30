@@ -5,7 +5,7 @@ import VipSignup from '@/components/sections/VipSignup';
 export default function HomePage() {
   return (
     <div className="space-y-16">
-      {/* Modern LandMercado Homepage */}
+      {/* 🎨 MODERN LANDMERCADO HOMEPAGE - NEW DESIGN */}
       <Hero />
       <FeaturedProperties />
       <VipSignup />
