@@ -2,12 +2,13 @@ import Hero from '@/components/sections/Hero';
 import FeaturedProperties from '@/components/sections/FeaturedProperties';
 import VipSignup from '@/components/sections/VipSignup';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <div className="space-y-16">
+      {/* Modern LandMercado Homepage */}
       <Hero />
       <FeaturedProperties />
       <VipSignup />
-    </main>
+    </div>
   );
 }
