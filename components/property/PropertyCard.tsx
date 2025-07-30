@@ -75,7 +75,15 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
         {/* Price Badge */}
         <div className="absolute top-4 right-4">
-          <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900">
+          <span style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(4px)',
+            padding: '0.25rem 0.75rem',
+            borderRadius: '9999px',
+            fontSize: '0.875rem',
+            fontWeight: 'bold',
+            color: '#111827'
+          }}>
             {formatPrice(property.price)}
           </span>
         </div>
@@ -91,7 +99,12 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+        <h3 style={{
+          fontSize: '1.25rem',
+          fontWeight: 'bold',
+          color: '#111827',
+          marginBottom: '0.5rem'
+        }}>
           {property.title}
         </h3>
 
