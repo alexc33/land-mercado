@@ -12,41 +12,99 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section style={{
+      position: 'relative',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden'
+    }}>
       {/* Background with gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-green-700">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%)'
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.2)'
+        }}></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+      <div style={{
+        position: 'relative',
+        zIndex: 10,
+        textAlign: 'center',
+        padding: '0 1rem',
+        maxWidth: '64rem',
+        margin: '0 auto'
+      }}>
+        <div style={{ marginBottom: '2rem' }}>
+          <h1 style={{
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontWeight: 'bold',
+            color: 'white',
+            marginBottom: '1.5rem',
+            lineHeight: 1.2
+          }}>
             Discover Your Perfect
-            <span className="block text-green-300">Land Investment</span>
+            <span style={{
+              display: 'block',
+              color: '#86efac'
+            }}>Land Investment</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-green-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p style={{
+            fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
+            color: '#dcfce7',
+            marginBottom: '2rem',
+            maxWidth: '48rem',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            lineHeight: 1.6
+          }}>
             Premium land opportunities across the United States. From hunting land to investment properties, 
             we help you find the perfect opportunity that matches your vision.
           </p>
         </div>
 
         {/* Search Bar */}
-        <div className="mb-12">
-          <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1">
+        <div style={{ marginBottom: '3rem' }}>
+          <form onSubmit={handleSearch} style={{ maxWidth: '42rem', margin: '0 auto' }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
+              <div style={{ flex: 1 }}>
                 <input
                   type="text"
                   placeholder="Search by location, property type, or price range..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-4 text-lg rounded-xl border-0 shadow-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+                  style={{
+                    width: '100%',
+                    padding: '1rem 1.5rem',
+                    fontSize: '1.125rem',
+                    borderRadius: '0.75rem',
+                    border: 'none',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    outline: 'none'
+                  }}
                 />
               </div>
               <button
                 type="submit"
-                className="btn-primary px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                className="btn-primary"
+                style={{
+                  padding: '1rem 2rem',
+                  fontSize: '1.125rem',
+                  fontWeight: '600',
+                  borderRadius: '0.75rem',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                }}
               >
                 Search Properties
               </button>
@@ -55,36 +113,79 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">500+</div>
-            <div className="text-green-200 font-medium">Properties Available</div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '2rem',
+          maxWidth: '48rem',
+          margin: '0 auto'
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: 'clamp(1.875rem, 3vw, 2.5rem)',
+              fontWeight: 'bold',
+              color: 'white',
+              marginBottom: '0.5rem'
+            }}>500+</div>
+            <div style={{
+              color: '#86efac',
+              fontWeight: '500'
+            }}>Properties Available</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">25+</div>
-            <div className="text-green-200 font-medium">States Covered</div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: 'clamp(1.875rem, 3vw, 2.5rem)',
+              fontWeight: 'bold',
+              color: 'white',
+              marginBottom: '0.5rem'
+            }}>25+</div>
+            <div style={{
+              color: '#86efac',
+              fontWeight: '500'
+            }}>States Covered</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">98%</div>
-            <div className="text-green-200 font-medium">Client Satisfaction</div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: 'clamp(1.875rem, 3vw, 2.5rem)',
+              fontWeight: 'bold',
+              color: 'white',
+              marginBottom: '0.5rem'
+            }}>98%</div>
+            <div style={{
+              color: '#86efac',
+              fontWeight: '500'
+            }}>Client Satisfaction</div>
           </div>
         </div>
 
         {/* CTA Buttons */}
-        <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white hover:text-green-800 px-8 py-3 text-lg font-semibold rounded-xl">
+        <div style={{
+          marginTop: '3rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <button className="btn-outline" style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            borderColor: 'rgba(255, 255, 255, 0.3)',
+            color: 'white',
+            padding: '0.75rem 1.5rem',
+            fontSize: '1.125rem',
+            fontWeight: '600',
+            borderRadius: '0.75rem'
+          }}>
             View Featured Properties
           </button>
-          <button className="btn-primary px-8 py-3 text-lg font-semibold rounded-xl">
+          <button className="btn-primary" style={{
+            padding: '0.75rem 1.5rem',
+            fontSize: '1.125rem',
+            fontWeight: '600',
+            borderRadius: '0.75rem'
+          }}>
             Get Expert Consultation
           </button>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
